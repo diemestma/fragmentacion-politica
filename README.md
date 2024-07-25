@@ -1,5 +1,5 @@
 # Fragmentación Política
-Este repositorio contiene el procedimiento para el cálculo del nivel de fragmentación política de las provincias y regiones de Perú. A partir de datos de los votos en las Elecciones Congresales 2006, 2011, 2016 y 2021, se calcula la fragmentación como el inverso del Índice de Herfindahl e Hirschman (HHI). Un mayor valor del HHI indicada un mayor nivel de fragmentación. 
+Este repositorio contiene el procedimiento para el cálculo del nivel de fragmentación política de las provincias y regiones de Perú. A partir de datos de los votos en las Elecciones Congresales 2006, 2011, 2016 y 2021, se calcula la fragmentación como el inverso del Índice de Herfindahl e Hirschman (HHI). Un mayor valor del inverso del HHI indicada un mayor nivel de fragmentación. 
 
 ## Contenido
 - [code.do](/code.do). En este Do File se realiza lo siguiente:
