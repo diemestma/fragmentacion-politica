@@ -13,8 +13,7 @@ Este repositorio contiene el procedimiento para el cálculo del nivel de fragmen
 Cualquier sugerencia de mejora (tal vez haya algún pequeño error en la recodificación de los códigos de las provincias) me puedes escribir un correo a dffjs98@gmail.com.
 
 [^1]: Los datos originales se pueden descargar desde el portal Datos Abiertos.
-[^2]: Los çódigos de las provincias en base al INEI se pueden descargar desde [aquí](https://webapp.inei.gob.pe:8443/sisconcode/main.htm#). El código para importar y arreglar esos archivos se encuentra en [code_ubigeo.do](/fragmentacion-politica
-/code_ubigeo.do).
+[^2]: Los çódigos de las provincias en base al INEI se pueden descargar desde [aquí](https://webapp.inei.gob.pe:8443/sisconcode/main.htm#). El código para importar y arreglar esos archivos se encuentra en [code_ubigeo.do](/fragmentacion-politica/code_ubigeo.do).
 [^3]: Sanz, C., Solé-Ollé, A., & Sorribas-Navarro, P. (2022). Betrayed by the Elites: How Corruption Amplifies the Political Effects of Recessions. Comparative Political Studies, 55(7), 1095-1129. https://doi.org/10.1177/00104140211047415 
 [^4]: Riera, P. (2020). Socioeconomic heterogeneity and party system fragmentation. Journal of Elections, Public Opinion and Parties, 33(3), 377–397. https://doi.org/10.1080/17457289.2020.1784181
 [^5]: Los datos georeferenciados se pueden descargar desde [aquí](https://www.geogpsperu.com/2014/03/base-de-datos-peru-shapefile-shp-minam.html).
