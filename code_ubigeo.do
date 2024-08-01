@@ -14,7 +14,7 @@ set more off
 
 ** Diego
 
-global o1 "C:/Users/DIEGO/OneDrive - Universidad de Lima/Escritorio/Proyectos/Activos"
+global o1 "**UBICACIÓN DE TU CARPETA PRINCIPAL**"
 
 global o2 "$o1/Fragmentación/1 Datos/Originales"
 
