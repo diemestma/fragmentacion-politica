@@ -1,8 +1,8 @@
 **********************
 **********************
 * Code PARA:
-* 1. Importar y limpiar base de datos de Elecciones Congresales (2006-2021)
-* 2. Calcular inverso de HHI
+* Importar, preparar y calcular HHI de Elecciones
+* Congresales (2006-2021) y Presidenciales (2006-2016)
 **********************                  
 **********************
 
@@ -12,20 +12,22 @@ set more off
 * Carpetas
 *************
 
-global o1 "**UBICACIÓN DE TU CARPETA PRINCIPAL**"
+** Diego
+
+global o1 "C:/Users/DIEGO/OneDrive - Universidad de Lima/Escritorio/Proyectos/Activos"
 
 global o2 "$o1/Fragmentación/1 Datos/Originales"
 
 global o3 "$o1/Fragmentación/1 Datos/Trabajadas"
 
 *************
-* Procedimiento
+* Importar y preparar
 *************
 clear all
 set more off
 
 
-* Congresal
+* 1. Congresal
 forv year = 2006(5)2021 {
 	
 	* Importar
@@ -52,14 +54,15 @@ forv year = 2006(5)2021 {
 	drop if descripcion_op == "VOTOS NULOS"
 
 	* Generar codigo de provincia y departamento
-	gen provincia_id     = string(ubigeo)
-	replace provincia_id = ("0" + provincia_id) if length(provincia_id) == 5
-	replace provincia_id = substr(provincia_id, 3, 2)
+	gen provincia_id_onpe     = string(ubigeo)
+	replace provincia_id_onpe = ("0" + provincia_id_onpe) if length(provincia_id_onpe) == 5
+	replace provincia_id_onpe = substr(provincia_id_onpe, 3, 2)
 
 	gen departamento_id  = string(ubigeo)
 	replace departamento_id = ("0" + departamento_id) if length(departamento_id) == 5
 	replace departamento_id  = substr(departamento_id, 1, 2)
 	
+	* Arreglar códigos de departamento
 	replace departamento_id = "07" if departamento == "CALLAO"
 	replace departamento_id = "08" if departamento == "CUSCO"
 	replace departamento_id = "09" if departamento == "HUANCAVELICA"
@@ -79,8 +82,28 @@ forv year = 2006(5)2021 {
 	replace departamento_id = "23" if departamento == "TACNA"	
 	replace departamento_id = "24" if departamento == "TUMBES"
 	
-	replace provincia_id = departamento_id + provincia_id
+	replace provincia_id_onpe = departamento_id + provincia_id_onpe
+	
+	* Arreglar códigos de provincia
+	replace provincia = "ANTONIO RAYMONDI" if provincia == "ANTONIO RAIMONDI"
+	replace provincia = "MARAÑON" if provincia == "MARAÃON"
+	replace provincia = "NASCA" if provincia == "NAZCA"
+	replace provincia = "FERREÑAFE" if provincia == "FERREÃAFE"
+	replace provincia = "CAÑETE" if provincia == "CAÃETE"
+	replace provincia = "DATEM DEL MARAÑON" if provincia == "DATEM DEL MARAÃON"
+	replace provincia = "DANIEL ALCIDES CARRION" if provincia == "DANIEL CARRION" 
+	replace provincia = "PROV. CONST. DEL CALLAO" if provincia == "CALLAO" 
 
+	replace provincia = ustrto(ustrnormalize(provincia, "nfd"), "ascii", 2)
+	
+	if (`year' == 2006 | `year' == 2011) local y_merge = 2010
+	if (`year' == 2016) local y_merge = 2016
+	if (`year' == 2021) local y_merge = 2021
+	
+	merge m:m provincia using "$o2/Geodata/UBIGEO/ubigeo_`y_merge'.dta", keepusing(provincia_id)
+	drop if _merge == 2
+	drop _merge
+	
 	* Calcular hhi por provincia
 	preserve
 
@@ -110,7 +133,7 @@ forv year = 2006(5)2021 {
 	gen hhi_departamento = 1/hhi_n_total_votos 
 
 	drop hhi_n_total_votos
-	
+
 	gen year = `year'
 	
 	save "$o3/Elecciones/`year'_hhi_departamento_c.dta", replace
