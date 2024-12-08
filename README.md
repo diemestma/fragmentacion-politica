@@ -4,7 +4,7 @@ Este repositorio contiene el procedimiento para el cálculo del nivel de fragmen
 ## Contenido
 - [code.do](/code.do). En este Do File se realiza lo siguiente:
    1. Limpieza de las bases de datos de votos por acta electoral de las Elecciones Congresales.[^1] Principalmente, se elimina los votos blancos, nulos e impugnados; se elimina los votos de peruanos en el extranjero; se eliminan las actas no contabilizadas; y se arreglan los códigos de las regiones y provincias en base a la codificación del INEI.[^2]
-   2. Cálculo del nivel de fragmentación, a partir de datos de votos de las Elecciones Congresales. La formula es la siguiente: $Fragmentación_{d} = {(\sum_{iϵN} x_{id}^2)}^{-1}$, en donde $N$ es la cantidad de partidos políticos y $x_{id}$ es la participación del partido $i$ en el total de votos dentro de la región o provincia $d$. Este indicador se utiliza para calcular el nivel de fragmentación política por, entre otros, Sanz et al. (2022) y por Riera (2023).[^3][^4]
+   2. Cálculo del nivel de fragmentación, a partir de datos de votos de las Elecciones Congresales. La formula es la siguiente: $Fragmentación_{d} = {(\sum_{iϵN} x_{id}^2)}^{-1}$, en donde $N$ es el conjunto de partidos políticos y $x_{id}$ es la participación del partido $i$ en el total de votos dentro de la región o provincia $d$. Este indicador se utiliza para calcular el nivel de fragmentación política por, entre otros, Sanz et al. (2022) y por Riera (2023).[^3][^4]
 - [code_figuras.do](/code_figuras.do). En este Do File se grafica el indicador $Fragmentación_{d}$, por provincia y región.[^5] Para el 2021, estos son los resultados:
   
   ![Alt text](/Fragmentacion_prov_2021.png)
